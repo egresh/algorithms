@@ -1,3 +1,10 @@
+puts <<EOF
+Demonstrate that Big O for the Bubble Sort algorithm follows O(N^2)
+As the number of elements in an unsorted array doubles, the time complexity
+follows O(N^2)
+
+EOF
+
 $LOAD_PATH.unshift(File.expand_path('../lib', __dir__))
 
 require 'bubble_sort'
