@@ -8,17 +8,17 @@ module BubbleSort
     list_copy           = list.dup
     sorted              = false
     last_sorted_element = list.size - 1
-    @comparisons        = 0
-    @swaps              = 0
+    @bubble_sort_comparisons        = 0
+    @bubble_sort_swaps              = 0
 
     until sorted
       sorted = true
 
       0.upto(last_sorted_element - 1) do |n|
-        @comparisons += 1
+        @bubble_sort_comparisons += 1
         if list_copy[n] > list_copy[n + 1]
           list_copy[n], list_copy[n + 1] = list_copy[n + 1], list_copy[n]
-          @swaps += 1
+          @bubble_sort_swaps += 1
           sorted = false
         end
       end
