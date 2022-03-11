@@ -3,22 +3,20 @@ require 'benchmark'
 
 path = File.join(RbConfig::CONFIG['prefix'].to_s, '**', '*')
 
-def files(path)
-  Dir.glob(path).select {|f| File.file? f}
-end
+ruby_files = Dir.glob(path).select {|f| File.file? f}
 
 schwartzian = Proc.new do
-  files(path).map {|f| [f, File.size(f)] }
-    .sort_by {|f| f[1]}
+  ruby_files.map {|f| [f, File.size(f)] }
+    .sort_by {|a| a[1]}
     .map {|f| f[0]}
 end
 
 regular_sort = Proc.new do
-  files(path).sort {|a,b| File.size(a) <=> File.size(b)}
+  ruby_files.sort {|a,b| File.size(a) <=> File.size(b)}
 end
 
 regular_sort_by = Proc.new do
-  files(path).sort_by {|a| File.size(a)}
+  ruby_files.sort_by {|a| File.size(a)}
 end
 
 Benchmark.bmbm do |x|
